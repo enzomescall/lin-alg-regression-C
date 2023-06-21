@@ -252,4 +252,31 @@ double dotProduct(matrix* vec1, matrix* vec2) {
     return result;
 }
 
+matrix* crossProduct(matrix* vec1, matrix* vec2) {
+    // Check if vectors are valid
+    if (vec1 == NULL || vec2 == NULL) {
+        printf("Error: Invalid input vectors.\n");
+        exit(1);
+    }
+
+    // Check if vectors have compatible dimensions
+    if (vec1->rows != vec2->rows) {
+        printf("Error: Incompatible dimensions between vectors.\n");
+        exit(1);
+    }
+
+    // Check if vectors are actually vectors
+    if (vec1->cols != 1 || vec2->cols != 1) {
+        printf("Error: Input matrices are not vectors.\n");
+        exit(1);
+    }
+
+    unsigned int rows = vec1->rows;
+
+    // Calculate cross product
+    matrix* result = createMatrix(rows, 1);
+
+    // unfinished
+}
+
 // Matrix and scalar operations
