@@ -40,6 +40,13 @@ matrix* createMatrix(unsigned int rows, unsigned int cols) {
         }
     }
 
+    // Initialize the matrix values to 0
+    for (unsigned int i = 0; i < rows; i++) {
+        for (unsigned int j = 0; j < cols; j++) {
+            mat->data[i][j] = 0;
+        }
+    }
+
     return mat;
 }
 
@@ -53,6 +60,30 @@ void freeMatrix(matrix* mat) {
     }
     free(mat->data);
     free(mat);
+}
+
+matrix* copyMatrix(matrix* mat) {
+    if (mat == NULL) {
+        fprintf(stderr, "Error: Cannot copy NULL matrix.\n");
+        return NULL;
+    }
+
+    unsigned int rows = mat->rows;
+    unsigned int cols = mat->cols;
+
+    matrix* result = createMatrix(rows, cols);
+    if (result == NULL) {
+        return NULL;
+    }
+
+    // Copy the matrix values
+    for (unsigned int i = 0; i < rows; i++) {
+        for (unsigned int j = 0; j < cols; j++) {
+            result->data[i][j] = mat->data[i][j];
+        }
+    }
+
+    return result;
 }
 
 // Matrix printing
@@ -190,3 +221,35 @@ matrix* transposeMatrix(matrix* mat) {
 
     return result;
 }
+
+// Vector operations
+double dotProduct(matrix* vec1, matrix* vec2) {
+    // Check if vectors are valid
+    if (vec1 == NULL || vec2 == NULL) {
+        printf("Error: Invalid input vectors.\n");
+        exit(1);
+    }
+
+    // Check if vectors have compatible dimensions
+    if (vec1->rows != vec2->rows) {
+        printf("Error: Incompatible dimensions between vectors.\n");
+        exit(1);
+    }
+
+    // Check if vectors are actually vectors
+    if (vec1->cols != 1 || vec2->cols != 1) {
+        printf("Error: Input matrices are not vectors.\n");
+        exit(1);
+    }
+
+    double result;
+
+    // Perform dot product
+    for (unsigned int i = 0; i < vec1->rows; i++) {
+        result += vec1->data[i][0] * vec2->data[i][0];
+    }
+
+    return result;
+}
+
+// Matrix and scalar operations
