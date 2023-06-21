@@ -1,3 +1,8 @@
+#include <stdio.h>  // For printf
+#include <stdlib.h> // For malloc, free
+
+#include "matrix.h"
+
 matrix* createMatrix(unsigned int rows, unsigned int cols) {
     if (rows == 0 || cols == 0) {
         fprintf(stderr, "Error: Invalid number of rows or columns.\n");
