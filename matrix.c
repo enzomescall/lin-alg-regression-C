@@ -1,25 +1,33 @@
 #include <stdio.h>  // For printf
-#include <stdlib.h> // For malloc, free
+#include <stdlib.h> // For malloc, free, your mom
 
 #include "matrix.h"
 
 
-// Matrix creation and destruction
+/*
+Matrix creation and destruction
+Input: rows, cols as unsigned ints (legal: only positive integers)
+WARNING: negative ints will wrap around to large positive ints
+Output: struct with first two elements unsigned ints rows and cols, and last element a pointer to an
+array of row arrays of size rows
+*/ 
 matrix* createMatrix(unsigned int rows, unsigned int cols) {
     if (rows == 0 || cols == 0) {
         fprintf(stderr, "Error: Invalid number of rows or columns.\n");
         return NULL;
     }
 
-    matrix* mat = (matrix*)malloc(sizeof(matrix));
+    // Assigns a pointer to the heap
+    matrix* mat = (matrix*) malloc(sizeof(matrix));
     if (mat == NULL) {
         fprintf(stderr, "Error: Memory allocation failed.\n");
         return NULL;
     }
 
+    // Initializes matrix row and col values, and a pointer to heap for (as array of row arrays)
     mat->rows = rows;
     mat->cols = cols;
-    mat->data = (double**)malloc(rows * sizeof(double *));
+    mat->data = (double**) malloc(rows * sizeof(double*));
     if (mat->data == NULL) {
         fprintf(stderr, "Error: Memory allocation failed.\n");
         free(mat);
@@ -27,7 +35,7 @@ matrix* createMatrix(unsigned int rows, unsigned int cols) {
     }
 
     for (unsigned int i = 0; i < rows; i++) {
-        mat->data[i] = (double*)malloc(cols * sizeof(double));
+        mat->data[i] = (double*) malloc(cols * sizeof(double));
         if (mat->data[i] == NULL) {
             fprintf(stderr, "Error: Memory allocation failed.\n");
             // Free previously allocated memory
@@ -50,6 +58,11 @@ matrix* createMatrix(unsigned int rows, unsigned int cols) {
     return mat;
 }
 
+/* 
+Freeing matrix heap memory after use of matrix has finished
+Input: pointer to matrix struct
+Output: null
+*/
 void freeMatrix(matrix* mat) {
     if (mat == NULL) {
         return;

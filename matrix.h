@@ -7,7 +7,13 @@ typedef struct matrix {
     double **data;
 } matrix;
 
-// Matrix creation and destruction
+/*
+Matrix creation and destruction
+Input: rows, cols as unsigned ints (legal: only positive integers)
+WARNING: negative ints will wrap around to large positive ints
+Output: struct with first two elements unsigned ints rows and cols, and last element a pointer to an
+array of row arrays of size rows
+*/ 
 matrix* createMatrix(unsigned int rows, unsigned int cols);
 void freeMatrix(matrix* mat);
 matrix* copyMatrix(matrix* mat);
