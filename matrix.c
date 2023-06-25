@@ -1,5 +1,6 @@
 #include <stdio.h>  // For printf
 #include <stdlib.h> // For malloc, free, your mom
+#include <math.h>   // For sqrt (magnitude)
 
 #include "matrix.h"
 
@@ -265,6 +266,30 @@ double dotProduct(matrix* vec1, matrix* vec2) {
     return result;
 }
 
+double magnitude(matrix* vec1) {
+    // Check if vector is valid
+    if (vec1 == NULL) {
+        printf("Error: Invalid input vector.\n");
+        exit(1);
+    }
+
+    // Check if vector is actually a vector
+    if (vec1->cols != 1) {
+        printf("Error: Input matrix is not a vector.\n");
+        exit(1);
+    }
+
+    double result;
+
+    // Perform magnitude calculation
+    for (unsigned int i = 0; i < vec1->rows; i++) {
+        result += vec1->data[i][0];
+    }
+
+    return sqrt(result);
+}
+
+// TODO: Finish cross product
 matrix* crossProduct(matrix* vec1, matrix* vec2) {
     // Check if vectors are valid
     if (vec1 == NULL || vec2 == NULL) {
@@ -293,3 +318,27 @@ matrix* crossProduct(matrix* vec1, matrix* vec2) {
 }
 
 // Matrix and scalar operations
+matrix* multiplyMatrixByScalar(matrix* mat, double scalar) {
+    // Check if matrix is valid
+    if (mat == NULL) {
+        return NULL;
+    }
+
+    unsigned int rows = mat->rows;
+    unsigned int cols = mat->cols;
+
+    // Create a new matrix to store the result
+    matrix* result = createMatrix(rows, cols);
+    if (result == NULL) {
+        return NULL;
+    }
+
+    // Perform matrix multiplication
+    for (unsigned int i = 0; i < rows; i++) {
+        for (unsigned int j = 0; j < cols; j++) {
+            result->data[i][j] = mat->data[i][j] * scalar;
+        }
+    }
+
+    return result;
+}
