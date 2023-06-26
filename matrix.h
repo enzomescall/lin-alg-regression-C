@@ -28,5 +28,12 @@ matrix* multiplyMatrices(matrix* mat1, matrix* mat2);
 matrix* transposeMatrix(matrix* mat);
 
 // Vector operations
+double dotProduct(matrix* vec1, matrix* vec2);
+double magnitude(matrix* vec1);
+matrix* crossProduct(matrix* vec1, matrix* vec2);
+
+// Scalar operations
+matrix* multiplyMatrixByScalar(matrix* mat, double scalar);
+
 
 #endif /* MATRIX_H */

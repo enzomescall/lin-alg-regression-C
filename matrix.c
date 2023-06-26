@@ -104,10 +104,9 @@ matrix* copyMatrix(matrix* mat) {
 void printMatrix(matrix* mat) {
     if (mat == NULL) {
          fprintf(stderr, "Error: Cannot print NULL matrix.\n");
-        return NULL;
+        return;
     }
 
-    printf("Matrix:\n");
     for (unsigned int i = 0; i < mat->rows; i++) {
         for (unsigned int j = 0; j < mat->cols; j++) {
             printf("%.2f ", mat->data[i][j]);
@@ -185,6 +184,7 @@ matrix* multiplyMatrices(matrix* mat1, matrix* mat2) {
 
     // Check if matrices have compatible dimensions
     if (mat1->cols != mat2->rows) {
+        printf("Error: Incompatible dimensions between matrices.\n");
         return NULL;
     }
 
@@ -279,14 +279,16 @@ double magnitude(matrix* vec1) {
         exit(1);
     }
 
-    double result;
+    double temp;
 
     // Perform magnitude calculation
     for (unsigned int i = 0; i < vec1->rows; i++) {
-        result += vec1->data[i][0];
+        temp += pow(vec1->data[i][0], 2);
     }
 
-    return sqrt(result);
+    double result = sqrt(temp);
+
+    return result;
 }
 
 // TODO: Finish cross product

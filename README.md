@@ -6,18 +6,18 @@
    - Matrix addition/subtraction
    - Matrix multiplication (still need Strassen)
    - Matrix transposition
+   - Scalar multiplication
    - Vector dot product
 
 **To-Do: Linear Algebra**
 0. Implement ways to add data to a matrix
-   - Element-wise
+   - Element-wise (sort of done, since you can just access the [i][j] row and column of matrix->data)
    - One whole column at a time
    - One whole row at a time
    - Randomly
    - From a text file
 
 1. Implement basic matrix operations:
-   - Scalar multiplication
    - Checking equality of matrices
    - Vector cross product
    - Vector scaling

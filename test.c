@@ -1,35 +1,37 @@
 #include <stdio.h> 
+#include <math.h> 
 #include "matrix.h"
 
 int main() {
-    unsigned int rows = 3;
-    unsigned int cols = 3;
+    
+    matrix* mat = createMatrix(6, 3);
 
-    // Create a matrix
-    matrix* mat = createMatrix(rows, cols);
-    if (mat == NULL) {
-        printf("Matrix creation failed.\n");
-        return 1;
-    }
-
-    // Set the matrix values
-    for (unsigned int i = 0; i < rows; i++) {
-        for (unsigned int j = 0; j < cols; j++) {
-            mat->data[i][j] = i * cols + j;
+    // populate matrix
+    for (unsigned int i = 0; i < mat->rows; i++) {
+        for (unsigned int j = 0; j < mat->cols; j++) {
+            mat->data[i][j] = i + j;
         }
     }
 
-    // Print the matrix
-    printf("Matrix:\n");
-    for (unsigned int i = 0; i < rows; i++) {
-        for (unsigned int j = 0; j < cols; j++) {
-            printf("%.2f ", mat->data[i][j]);
-        }
-        printf("\n");
+    matrix* mat2 = createMatrix(6, 3);
+    
+    // populate matrix
+    for (unsigned int i = 0; i < mat2->rows; i++) {
+        for (unsigned int j = 0; j < mat2->cols; j++) {
+            mat2->data[i][j] = i * j + 1;
+        } 
     }
 
-    // Free the matrix memory
-    freeMatrix(mat);
+    matrix* mat3 = transposeMatrix(mat2);
+    matrix* mat4 = multiplyMatrices(mat, mat3);
+    matrix* test = multiplyMatrices(mat, mat2);
+
+    printMatrix(mat);
+
+    printf("mat4 rows: %d\n", mat4->rows);
+    matrix* mat5 = multiplyMatrixByScalar(mat, 2);
+
+    printMatrix(mat5);
 
     return 0;
 }
