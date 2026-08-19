@@ -33,5 +33,23 @@ int main() {
 
     printMatrix(mat5);
 
+    printf("\nTesting the dot product\n");
+
+    matrix* vec1 = createMatrix(2, 1);
+    vec1->data[1][0] = 1;
+    printMatrix(vec1);
+ 
+    matrix* vec2 = createMatrix(2, 1);
+    vec2->data[0][0] = 1;
+    vec2->data[1][0] = 2;
+    printMatrix(vec2);
+
+    double mag = magnitude(vec2);
+    printf("Magnitude of vec2: %.2lf\n", mag);
+    
+    double dp = dotProduct(vec1, vec2);
+    printf("Result: %.2lf\n", dp);
+
+
     return 0;
 }

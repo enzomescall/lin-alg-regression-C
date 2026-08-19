@@ -109,7 +109,7 @@ void printMatrix(matrix* mat) {
 
     for (unsigned int i = 0; i < mat->rows; i++) {
         for (unsigned int j = 0; j < mat->cols; j++) {
-            printf("%.2f ", mat->data[i][j]);
+            printf("%.2lf ", mat->data[i][j]);
         }
         printf("\n");
     }

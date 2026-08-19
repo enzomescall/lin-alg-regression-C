@@ -10,7 +10,7 @@
    - Vector dot product
 
 **To-Do: Linear Algebra**
-0. Implement ways to add data to a matrix
+0. Implement ways to add data to a matrix 
    - Element-wise (sort of done, since you can just access the [i][j] row and column of matrix->data)
    - One whole column at a time
    - One whole row at a time
