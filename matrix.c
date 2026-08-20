@@ -313,8 +313,12 @@ matrix* _skewSymmetricMatrix(matrix* vec1) {
         matrix* e_i = createMatrix(n, 1);
         e_i->data[i][0] = 1;
         
-        
+        // Man... is there a cross product cheatcode for the unit vector
+
+        freeMatrix(e_i);
     }
+
+    return 0;
 }
 // TODO: Finish cross product
 matrix* crossProduct(matrix* vec1, matrix* vec2) {
