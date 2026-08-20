@@ -329,8 +329,8 @@ matrix* crossProduct(matrix* vec1, matrix* vec2) {
     }
 
     // Check if vectors have compatible dimensions
-    if (vec1->rows != vec2->rows) {
-        printf("Error: Incompatible dimensions between vectors.\n");
+    if (vec1->rows != 3 || vec2->rows != 3) {
+        printf("Error: Incompatible dimensions between vectors, cross product requires 3x1 vector.\n");
         exit(1);
     }
 
@@ -342,11 +342,19 @@ matrix* crossProduct(matrix* vec1, matrix* vec2) {
 
     unsigned int rows = vec1->rows;
 
-    // Calculate cross product
     matrix* result = createMatrix(rows, 1);
 
-    // Going to try to turn vec1 into a skew-symmetric matrix
-    // and then left multiply that with b
+    // [x]   [a_1*b_2 - a_2*b_1]
+    // [y] = [a_2*b_0 - a_0*b_2]
+    // [z]   [a_0*b_1 - a_1*b_0]
+    result->data[0][0] =
+        vec1->data[1][0]*vec2->data[2][0] - vec1->data[2][0]*vec2->data[1][0];
+    result->data[1][0] =
+        vec1->data[2][0]*vec2->data[0][0] - vec1->data[0][0]*vec2->data[2][0];
+    result->data[2][0] =
+        vec1->data[0][0]*vec2->data[1][0] - vec1->data[1][0]*vec2->data[0][0];
+
+    // Pray that i got it right
 
     return result;
 }

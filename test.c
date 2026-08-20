@@ -35,11 +35,11 @@ int main() {
 
     printf("\nTesting the dot product\n");
 
-    matrix* vec1 = createMatrix(2, 1);
+    matrix* vec1 = createMatrix(3, 1);
     vec1->data[1][0] = 1;
     printMatrix(vec1);
  
-    matrix* vec2 = createMatrix(2, 1);
+    matrix* vec2 = createMatrix(3, 1);
     vec2->data[0][0] = 1;
     vec2->data[1][0] = 2;
     printMatrix(vec2);
@@ -50,6 +50,9 @@ int main() {
     double dp = dotProduct(vec1, vec2);
     printf("Result: %.2lf\n", dp);
 
+    printf("\nCalculating the cross product:\n");
+    matrix* vec3 = crossProduct(vec1, vec2);
+    printMatrix(vec3);
 
     return 0;
 }
