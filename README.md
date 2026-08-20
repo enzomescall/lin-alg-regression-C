@@ -19,7 +19,6 @@
 
 1. Implement basic matrix operations:
    - Checking equality of matrices
-   - Vector cross product
    - Vector scaling
    
 2. Input validation:

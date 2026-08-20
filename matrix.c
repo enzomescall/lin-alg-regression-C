@@ -291,6 +291,31 @@ double magnitude(matrix* vec1) {
     return result;
 }
 
+// UNFINISHED: I started this because I thought it would be a cross-product cheatcode
+matrix* _skewSymmetricMatrix(matrix* vec1) {
+    // Check if vector is valid
+    if (vec1 == NULL) {
+        printf("Error: Invalid input vector.\n");
+        exit(1);
+    }
+    // Check if vector is vector
+    if (vec1->cols != 1) {
+        printf("Error: Input matrix is not a vector\n");
+        exit(1);
+    }
+
+    // According to wikipedia: [a] = a x e_i, i in (1...n)
+    // Where e_i is the unit vector with 1 at row i and n is a->rows
+    unsigned int n = vec1->rows;
+    
+    for (unsigned int i = 0; i < n; i++) {
+        // Create e_i
+        matrix* e_i = createMatrix(n, 1);
+        e_i->data[i][0] = 1;
+        
+        
+    }
+}
 // TODO: Finish cross product
 matrix* crossProduct(matrix* vec1, matrix* vec2) {
     // Check if vectors are valid
@@ -316,7 +341,10 @@ matrix* crossProduct(matrix* vec1, matrix* vec2) {
     // Calculate cross product
     matrix* result = createMatrix(rows, 1);
 
-    // unfinished
+    // Going to try to turn vec1 into a skew-symmetric matrix
+    // and then left multiply that with b
+
+    return result;
 }
 
 // Matrix and scalar operations
