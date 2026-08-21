@@ -1,6 +1,7 @@
 # lin-alg-regression-C
 
 **Done: Linear Algebra**
+0. Implement ways to add data to a matrix
 
 1. Implement basic matrix operations:
    - Matrix addition/subtraction
@@ -8,8 +9,11 @@
    - Matrix transposition
    - Scalar multiplication
    - Vector dot product
+   - Vector cross product
 
 **To-Do: Linear Algebra**
+- Make all functions use the same validation process pattern
+
 0. Implement ways to add data to a matrix 
    - Element-wise (sort of done, since you can just access the [i][j] row and column of matrix->data)
    - One whole column at a time
@@ -26,7 +30,6 @@
    - Check for compatibility of matrix sizes in operations
 
 3. Implement additional matrix operations:
-   - Vector cross product
    - Matrix inversion
    - Row reduction
    - Determinant calculation

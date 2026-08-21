@@ -1,6 +1,7 @@
 #include <stdio.h>  // For printf
-#include <stdlib.h> // For malloc, free, your mom
-#include <math.h>   // For sqrt (magnitude)
+#include <stdlib.h> // For malloc, free
+#include <stdbool.h> // For bool type
+#include <math.h>   // For sqrt (magnitude) and something else
 
 #include "matrix.h"
 
@@ -98,6 +99,23 @@ matrix* copyMatrix(matrix* mat) {
     }
 
     return result;
+}
+
+bool validateMatrix(matrix* mat) {
+    if (mat == NULL) {
+        printf("Error: Invalid input matrix.\n");
+        return false;
+    }
+    else {
+        return true;
+    }
+};
+
+// Adding data to a matrix
+void addRow(matrix* mat, double* data) {
+    // Validation
+
+    // Loop through columns to add a row
 }
 
 // Matrix printing
@@ -236,6 +254,38 @@ matrix* transposeMatrix(matrix* mat) {
     return result;
 }
 
+// Matrix and scalar operations
+matrix* multiplyMatrixByScalar(matrix* mat, double scalar) {
+    // Check if matrix is valid
+    if (!validateMatrix(mat)) {
+        return NULL;
+    }
+
+    unsigned int rows = mat->rows;
+    unsigned int cols = mat->cols;
+
+    // Create a new matrix to store the result
+    matrix* result = createMatrix(rows, cols);
+    if (result == NULL) {
+        return NULL;
+    }
+
+    // Perform matrix multiplication
+    for (unsigned int i = 0; i < rows; i++) {
+        for (unsigned int j = 0; j < cols; j++) {
+            result->data[i][j] = mat->data[i][j] * scalar;
+        }
+    }
+
+    return result;
+}
+matrix* addMatrixByScalar(matrix* mat, double scalar) {
+    // Check if matrix is valid
+    if (!validateMatrix(mat)) {
+        return NULL;
+    }
+}
+
 // Vector operations
 double dotProduct(matrix* vec1, matrix* vec2) {
     // Check if vectors are valid
@@ -320,7 +370,6 @@ matrix* _skewSymmetricMatrix(matrix* vec1) {
 
     return 0;
 }
-// TODO: Finish cross product
 matrix* crossProduct(matrix* vec1, matrix* vec2) {
     // Check if vectors are valid
     if (vec1 == NULL || vec2 == NULL) {
@@ -355,32 +404,6 @@ matrix* crossProduct(matrix* vec1, matrix* vec2) {
         vec1->data[0][0]*vec2->data[1][0] - vec1->data[1][0]*vec2->data[0][0];
 
     // Pray that i got it right
-
-    return result;
-}
-
-// Matrix and scalar operations
-matrix* multiplyMatrixByScalar(matrix* mat, double scalar) {
-    // Check if matrix is valid
-    if (mat == NULL) {
-        return NULL;
-    }
-
-    unsigned int rows = mat->rows;
-    unsigned int cols = mat->cols;
-
-    // Create a new matrix to store the result
-    matrix* result = createMatrix(rows, cols);
-    if (result == NULL) {
-        return NULL;
-    }
-
-    // Perform matrix multiplication
-    for (unsigned int i = 0; i < rows; i++) {
-        for (unsigned int j = 0; j < cols; j++) {
-            result->data[i][j] = mat->data[i][j] * scalar;
-        }
-    }
 
     return result;
 }
