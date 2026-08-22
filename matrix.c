@@ -111,11 +111,27 @@ bool validateMatrix(matrix* mat) {
     }
 };
 
-// Adding data to a matrix
-void addRow(matrix* mat, double* data) {
+// Populate a matrix with data
+int populateRow(matrix* mat, unsigned int row, double* data) {
     // Validation
+    if (!validateMatrix(mat)) {
+        printf("Error: Failed to populateRow, invalid input matrix.\n");
+        return -1;
+    }
+    if (row >= mat->rows) {
+        printf("Error: Failed to populateRow, inputted %d rows, matrix has %d rows\n", row, mat->rows);
+    } else if (row == 0)
+    {
+        printf("Error: Failed to populateRow, row 0 is out of bounds indexing begins at 1");
+    }
+      
 
-    // Loop through columns to add a row
+    // Insanely straightforward
+    for (unsigned int i = 0; i < mat->cols; i++) {
+        mat->data[][];
+    }
+
+    return 0;
 }
 
 // Matrix printing
